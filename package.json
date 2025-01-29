@@ -1,0 +1,21 @@
+{
+  "name": "barberia-app",
+  "version": "1.0.0",
+  "description": "Aplicación para gestionar la base de datos de una barbería",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["barberia", "express", "mssql", "backend"],
+  "author": "Manuel-Recchi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mssql": "^11.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

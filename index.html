@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lista de clientes de la barbería">
+    <meta name="author" content="Tu Nombre">
+    <title>Lista de Clientes</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+    <h1>Clientes</h1>
+
+    <div id="estado" role="alert" aria-live="polite">Cargando clientes...</div>
+
+Lista de clientes
+    <ul id="clientes" role="list"></ul>
+
+ <script>
+ async function cargarClientes() {
+  const estado = document.getElementById('estado');
+ const lista = document.getElementById('clientes');
+
+  try {
+    const response = await fetch('http://localhost:3000/clientes');
+                
+ if (!response.ok) {
+ throw new Error(`Error: ${response.status} ${response.statusText}`);
+  }
+
+  const clientes = await response.json();
+           
+ estado.textContent = '';
+
+lista.innerHTML = '';
+
+     clientes.forEach(cliente => {
+ const li = document.createElement('li');
+  li.textContent = `ID: ${cliente.id_cliente} - Nombre: ${cliente.nombre_cliente}`;
+ lista.appendChild(li);
+   });
+
+} catch (error) {
+ console.error('Hubo un problema al cargar los clientes:', error);
+
+ // Mensaje de error en la página
+ estado.textContent = 'Error al cargar los clientes. Por favor, inténtalo más tarde.';
+            }
+ }
+
+        cargarClientes();
+    </script>
+</body>
+</html>
